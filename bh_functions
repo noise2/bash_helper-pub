@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# replace `$2` with `$3` in directory `$1`
+function str_replace
+{
+    grep -rlE "$2" "$1" | xargs sed -i.bak "s/$2/$3/g"
+}
+
+function str_find
+{
+    pattern="$2"
+    directory="$1"
+    grep -nE $pattern -r $directory ${@:3}
+}
+# gen random passwords
+function genpasswd() {
+	local l=$1
+   	[ "$l" == "" ] && l=16
+  	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+}
+#!/bin/bash
+# up/down grid of a process by name
+function niceproc()
+{
+    echo -e "\e[33m"
+    sudo renice -n $2 -p `ps -A | grep $1 | cut -d '?' -f1`
+    echo -e "\e[m"
+}
+# cd and ls
+function cd
+{
+    builtin cd "$@" && ls -F
+}
+# check if file exists
+function e()
+{
+    while test $# -gt 0; do
+        if [ -e "$1" ]; then
+            echo -e "\e[32m[ YES ] $1\e[39m";
+        else
+            echo -e "\e[31m[ NOP ] $1\e[39m";
+        fi
+        shift;
+    done
+}
+# check if a passed command has output
+function has_output()
+{
+    echo $($* 2> /dev/null | wc -l)
+}
+
+function count_code_line()
+{
+    cat ${*:2} | sed "/^\s*$1/d;/^\s*$/d" | wc -l
+}
+
+function mp42mp3()
+{
+    avconv -i "$1" -vn -acodec libmp3lame -ac 2 -ab 160k -ar 48000 "`basename "$1" .mp4`.mp3"
+}

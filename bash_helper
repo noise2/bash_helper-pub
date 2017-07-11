@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ "$color_prompt" = yes ]; then
+    PS1='\r\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\r\n\$ '
+else
+    PS1='\r\n\e[0;37m${debian_chroot:+($debian_chroot)}\u@\h:\e[0m\w$(__git_ps1) [\d | \t]\r\n\$ '
+fi
+
+export BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+for source_file in bh_aliases bh_functions bh_inputrc git_helper_aliases git_helper_functions; do
+	if [ -f "$BASE_DIR/$source_file" ]; then
+		source "$BASE_DIR/$source_file"
+	else
+		echo -e "\e[33m[x] Bash helper unabled to find source file \`$BASE_DIR/$source_file\`!"
+	fi
+done

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd $HOME
+
+if [ ! -f .bashrc ]; then
+	echo -e "\e[31mThe \`$HOME/.bashrc\` file does not exists!\e[m"
+	exit 1
+fi
+
+git clone https://github.com/noise2/bash_helper.git .bash_helper.d || exit 1
+
+if grep -Fq '. $HOME/.bash_helper.d/bash_helper' $HOME/.bashrc
+then
+	: # if already included
+else
+	# if not already included
+	echo '
+# include bash helpers
+if [ -f $HOME/.bash_helper.d/bash_helper ]; then . $HOME/.bash_helper.d/bash_helper; fi' >> .bashrc
+fi

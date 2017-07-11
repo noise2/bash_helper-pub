@@ -1,0 +1,30 @@
+#!/bin/bash
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias pp='ping 8.8.8.8 -O'
+alias ..='cd ..'
+alias ~='cd ~'
+alias open='nautilus $* &>/dev/null'
+alias n='nano $*'
+alias xf='nautilus /usr/local/src/xf && exit'
+alias www='cd /var/www'
+alias apt-get='sudo apt-get'
+alias c='clear'
+alias shutdown='sudo shutdown $*'
+alias reboot='sudo reboot $*'
+alias g='grep $*'
+alias x='xkill $*'
+alias nwp='kill `ps -A | g sleep | cut -d " " -f1` >/dev/null 2>&1 || killall sleep >/dev/null 2>&1'
+alias h='head $*'
+alias xclip="xclip -selection c"
+alias oui='nohup octave --force-gui >/dev/null 2>&1&'
+alias mf='sleep .1; xset dpms force off && exit'
+alias logout="pkill -u $USER"
+alias hl='du -shx * | sort -h'
+alias kstop='sudo service kerio-kvc stop'
+alias kstart='sudo service kerio-kvc start'
+alias dl='aria2c -j 16 -x 16 -s 16 $*'
+
+# include compress aliases
+. $BASE_DIR/bh_aliases_compress

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# trying to load local .gitsa file if any exists
+function gitsa() {
+	localGITSA="`pwd`/.gitsa"
+	# skip self-loop .gitsa re-include
+	if [[ "$BASH_SOURCE" != "$localGITSA" ]]; then
+	  if [[ -e $localGITSA ]]; then
+	      source $localGITSA
+	  else
+	      echo -e "\e[33mNo local \`.gitsa\` file found!\e[m"
+	  fi
+	fi
+
+	# promt the success
+	echo -e "\e[32mThe Git Shortcut Aliases Are In Effect.\e[m"
+}
