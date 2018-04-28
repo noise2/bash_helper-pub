@@ -7,7 +7,7 @@ if [ ! -f .bashrc ]; then
 	exit 1
 fi
 
-git clone https://github.com/noise2/bash_helper.git .bash_helper.d || exit 1
+git clone https://github.com/alphamarket/bash_helper-pub.git .bash_helper.d || exit 1
 
 if grep -Fq '. $HOME/.bash_helper.d/bash_helper' $HOME/.bashrc
 then
