@@ -22,9 +22,9 @@ function genpasswd() {
 # up/down grid of a process by name
 function niceproc()
 {
-    echo -e "\e[33m"
+    echo -e "\e[33m\c"
     sudo renice -n $2 -p `ps -A | grep $1 | cut -d '?' -f1`
-    echo -e "\e[m"
+    echo -e "\e[m\c"
 }
 # cd and ls
 function cd
