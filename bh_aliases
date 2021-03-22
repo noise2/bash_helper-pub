@@ -26,6 +26,7 @@ alias dl='aria2c -j 16 -x 16 -s 16 $*'
 alias pv='rsync -ah --progress $*'
 alias dl-tor='aria2c $*'
 alias dl-mtor='aria2c --follow-torrent=mem $*'
+alias now='date +"%Y/%m/%d %H:%M:%S"'
 
 # include compress aliases
 . $BASE_DIR/bh_aliases_compress
